@@ -1,7 +1,7 @@
 Generate events scaffold and run migration.
 
 ```
-rails generate scaffold Event title:string describtion:text location:string startsAt:date endsAt:date
+rails generate scaffold Event title:string describtion:text location:string startsAt:datetime endsAt:datetime
 ```
 
 Add and install gem for devise.

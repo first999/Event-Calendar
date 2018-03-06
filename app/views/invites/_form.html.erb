@@ -1,0 +1,25 @@
+<%= form_for(@invite) do |f| %>
+  <% if @invite.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@invite.errors.count, "error") %> prohibited this invite from being saved:</h2>
+
+      <ul>
+      <% @invite.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id, 'Name' %>
+    <%= f.select :user_id, options_for_select(@users.collect { | user | [user.full_name, user.id] }, @user.id), {}, class: 'inv-select' %>
+  </div>
+  <div class="field">
+    <%= f.label :event_id %>
+    <%= f.select :event_id, options_for_select(@events.collect { | event | [event.title, event.id] }, @event.id), {}, class: 'inv-select' %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Invite' %>
+  </div>
+<% end %>

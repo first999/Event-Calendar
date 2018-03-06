@@ -1,0 +1,92 @@
+<p id="notice"><%= notice %></p>
+
+<div id="profile">
+<%= link_to 'Edit profile', edit_user_registration_path %> <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+</div>
+
+<div class="left-titles">
+<h1>My Events</h1>
+</div>
+
+<% if @events.exists? %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Location</th>
+      <th>Starts at:</th>
+      <th>Ends at:</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= event.title %></td>
+        <td><%= event.description %></td>
+        <td><%= event.location %></td>
+        <td><%= event.startsAt.strftime("%I:%M%p, %A %d/%m/%Y ") %></td>
+        <td><%= event.endsAt.strftime("%I:%M%p, %A %d/%m/%Y ") %></td>
+        <td><%= link_to 'Edit', edit_event_path(event), class: 'table-button' %></td>
+        <td><%= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'table-button' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% else %>
+<div class="no-record"><%= 'You are currently not hosting any events.' %></div>
+<% end %>
+
+<br>
+<div id="events-buttons">
+  <div class="left">
+    <%= link_to 'Create new event', new_event_path %>
+  </div>
+  <% if @events.exists? %> 
+    <div class="right">
+      <%= link_to 'Invite people', new_invite_path %> 
+      <%= link_to 'Check responses', invites_my_invites_path %>
+    </div>
+  <% end %>
+</div>
+<div style="clear:both;"></div>
+
+<div class="left-titles">
+<h1>Events that I have been invited to:</h1>
+</div>
+
+<% if @invites.exists? %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Host</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @invites.each do |event| %>
+      <tr>
+        <td><%= event.title %></td>
+        <td><%= event.user.full_name %></td>
+        <td><%= link_to 'Details', event, class: 'table-button' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="left-titles"
+<br>
+<%= link_to 'Respond to your invites', invites_path, id: 'respond-button' %>
+<br>
+</div>
+
+<% else %>
+<div class="no-record"><%= 'You are currently not invited to any event.' %></div>
+<% end %>

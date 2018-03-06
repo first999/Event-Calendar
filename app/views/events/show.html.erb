@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+<div id="show-event">
+  <span class="show-bolds">Title</span>
+  <br>
+  <%= @event.title %>
+  <br><br><br>
+  <span class="show-bolds">Description:</span>
+  <br>
+  <%= @event.description %>
+  <br><br><br>
+  <span class="show-bolds">Location:</span>
+  <br>
+  <%= @event.location %>
+  <br><br><br>
+  <span class="show-bolds">Starts at:</span>
+  <br>
+  <%= @event.startsAt.strftime("%I:%M%p, %A %d/%m/%Y ") %>
+  <br><br><br>
+  <span class="show-bolds">Ends at:</span>
+  <br>
+  <%= @event.endsAt.strftime("%I:%M%p, %A %d/%m/%Y ") %>
+  <br>
+</div>
+
+<%= link_to 'Back', events_path %>

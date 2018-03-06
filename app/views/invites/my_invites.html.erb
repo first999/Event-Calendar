@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Responses</h1>
+
+<% if @invites.exists? %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Name</th>
+      <th>Response</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @invites.each do |invite| %>
+      <tr>
+        <td><%= invite.title %></td>
+        <td><%= invite.user.full_name %></td>
+        <td><%= invite.attending %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% else %>
+<div class="no-record"><%= 'You have not invited anyone to your events yet.' %></div>
+<% end %>
+
+<br><br>
+
+<%= link_to 'Back', events_path %>

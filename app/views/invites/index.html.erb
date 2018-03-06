@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Your invites</h1>
+
+<% if @invites.exists? %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>My response</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @invites.each do |invite| %>
+      <tr>
+        <td><%= invite.title %></td>
+        <td><%= invite.attending %></td>
+        <td><%= link_to 'Respond', edit_invite_path(invite), class: 'table-button' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% else %>
+<%= 'You are currently not invited to any event.' %>
+<% end %>
+
+<br><br>
+
+<%= link_to 'Back', events_path %>

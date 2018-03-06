@@ -1,0 +1,26 @@
+<%= form_for(@invite) do |f| %>
+  <% if @invite.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@invite.errors.count, "error") %> prohibited this invite from being saved:</h2>
+
+      <ul>
+      <% @invite.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field" id="att-field">
+    <%= f.radio_button :attending, 'Going', :checked => true %> 
+    <%= label :attending_yes, 'Going', class: 'att-label' %><br>
+    <%= f.radio_button :attending, 'Not going' %>
+    <%= label :attending_no, 'Not going', class: 'att-label' %><br>
+    <%= f.radio_button :attending, 'Interested' %>
+    <%= label :attending_maybe, 'Interested', class: 'att-label' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Respond' %>
+  </div>
+<% end %>

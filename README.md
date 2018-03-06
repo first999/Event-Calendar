@@ -46,7 +46,7 @@ Add new file ('myinvites') to invites and configure it's route.
 
 ```
 get '/invites/my_invites', to: 'invites#my_invites'
-'''
+```
 
 Configure controllers for events and invites (instance variables).
 

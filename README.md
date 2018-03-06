@@ -17,6 +17,12 @@ Generate users and it's views.
 rails generate devise user
 ```
 
+Set the authentication.
+
+```
+before_filter :authenticate_user!
+```
+
 Add user_id to events and run migration.
 
 ```

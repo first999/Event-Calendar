@@ -6,6 +6,11 @@ rails generate scaffold Event title:string describtion:text location:string star
 
 Add and install gem for devise.
 
+```
+gem 'devise'
+bundle install
+```
+
 Generate users and it's views.
 
 Add user_id to events and run migration.

@@ -37,9 +37,39 @@ rails generate scaffold Invite attending:boolean
 
 Set valid connections between users, events and invites.
 
-Add new file to invites and configure it's route.
+```
+add_reference :invites, :user, index: true, foreign_key: true
+add_reference :invites, :event, index: true, foreign_key: true
+```
+
+Add new file ('myinvites') to invites and configure it's route.
+
+```
+get '/invites/my_invites', to: 'invites#my_invites'
+'''
 
 Configure controllers for events and invites (instance variables).
+
+Events:
+
+```
+def index
+    @events = current_user.events.order(startsAt: :ASC)
+    @invites = Event.joins(:invites).where(:invites => {:user_id => current_user}).order(startsAt: :ASC)
+end
+```
+
+Invites:
+```
+def index
+  @invites = Event.select("*").joins(:invites).where(:invites => {:user_id => current_user}).order(startsAt: :ASC)
+end
+
+
+def my_invites
+  @invites = Event.select("*").joins(:invites).where(:events => {:user_id => current_user}).order(title: :ASC)
+end
+```
 
 Set up valiations in models.
 

@@ -50,16 +50,16 @@ get '/invites/my_invites', to: 'invites#my_invites'
 
 Configure controllers for events and invites (instance variables).
 
-Events:
+   Events:
 
-```
-def index
-    @events = current_user.events.order(startsAt: :ASC)
-    @invites = Event.joins(:invites).where(:invites => {:user_id => current_user}).order(startsAt: :ASC)
-end
-```
+    ```
+        def index
+            @events = current_user.events.order(startsAt: :ASC)
+            @invites = Event.joins(:invites).where(:invites => {:user_id => current_user}).order(startsAt: :ASC)
+        end
+    ```
 
-Invites:
+   Invites:
 ```
 def index
   @invites = Event.select("*").joins(:invites).where(:invites => {:user_id => current_user}).order(startsAt: :ASC)

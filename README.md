@@ -1,5 +1,9 @@
 Generate events scaffold and run migration.
 
+```
+rails generate scaffold Event title:string describtion:text location:string startsAt:date endsAt:date
+```
+
 Add and install gem for devise.
 
 Generate users and it's views.

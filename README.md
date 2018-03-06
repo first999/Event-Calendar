@@ -68,9 +68,26 @@ end
 def my_invites
   @invites = Event.select("*").joins(:invites).where(:events => {:user_id => current_user}).order(title: :ASC)
 end
+
+def invite_params
+   params.require(:invite).permit(:attending, :user_id, :event_id)
+end
 ```
 
 Set up valiations in models.
+
+Events:
+```
+validates :title, presence: true
+validates :location, presence: true
+validates :title, uniqueness: true
+```
+Invites:
+```
+validates :user_id, uniqueness: { scope: :event_id, message: "has already been invited to this event." }
+validates :user_id, presence: true
+validates :event_id, presence: true
+```
 
 Edit and organize app views and their connections (links).
 

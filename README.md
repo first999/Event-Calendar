@@ -95,6 +95,6 @@ validates :user_id, presence: true
 validates :event_id, presence: true
 ```
 
-Edit and organize app views and their connections (links).
+Edit and organize app views (index, show, forms) and their connections (links).
 
 Style the app with CSS.

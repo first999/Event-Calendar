@@ -13,11 +13,27 @@ bundle install
 
 Generate users and it's views.
 
+```
+rails generate devise user
+```
+
 Add user_id to events and run migration.
+
+```
+rails g migration AddUserToEvent user:belongs_to
+```
 
 Edit events controller.
 
+```
+@destination = current_user.destinations.build(destination_params)
+```
+
 Generate invites scaffold and run migration.
+
+```
+rails generate scaffold Invite attending:boolean
+```
 
 Set valid connections between users, events and invites.
 

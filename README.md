@@ -52,12 +52,12 @@ Configure controllers for events and invites (instance variables).
 
    Events:
 
-    ```
+    
         def index
             @events = current_user.events.order(startsAt: :ASC)
             @invites = Event.joins(:invites).where(:invites => {:user_id => current_user}).order(startsAt: :ASC)
         end
-    ```
+    
 
    Invites:
 ```
